@@ -12,8 +12,8 @@
     "format": "biome format --write",
     "lint": "biome check --fix",
     "changeset": "changeset",
-    "version": "changeset version",
-    "release": "changeset publish",
+    "changeset:version": "changeset version",
+    "changeset:publish": "pnpm build && changeset publish",
     "prepare": "npx simple-git-hooks",
     "typecheck": "tsc --noEmit"
   },
@@ -38,10 +38,7 @@
   "peerDependencies": {
     "typescript": "^5.6.2"
   },
-  "files": [
-    "dist",
-    "src"
-  ],
+  "files": ["dist", "src"],
   "exports": {
     ".": {
       "import": "./dist/index.esm.js",
@@ -49,12 +46,7 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "keywords": [
-    "hash",
-    "integrity",
-    "crypto",
-    "validation"
-  ],
+  "keywords": ["hash", "integrity", "crypto", "validation"],
   "author": "Sohab Sk",
   "license": "MIT",
   "repository": {
