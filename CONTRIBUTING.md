@@ -31,11 +31,18 @@ Ensure all tests pass.
 bun run test
 ```
 
+## Create a Changeset
+
+Create a changeset to describe your changes.
+```bash
+bun changeset
+```
+
 ## Commit Your Changes
 
-Commit your changes with a descriptive commit message.
+Commit your changes with a descriptive commit message following the GitHub convention (e.g., `feat:`, `docs:`, `fix:`, etc.).
 ```bash
-git commit -m "Add feature XYZ"
+git commit -m "feat: Add feature XYZ"
 ```
 
 ## Push to Your Fork

@@ -51,7 +51,7 @@ console.log(`Is data valid? ${isValid}`);
 
 ## 🧑‍💻 Development Guide
 
-### Install Dependencies
+### 🤖 Install Dependencies
 
 Install [Bun](https://bun.sh/) and then dependencies using Bun:
 
@@ -59,7 +59,7 @@ Install [Bun](https://bun.sh/) and then dependencies using Bun:
 bun install
 ```
 
-## 🧪 Running Tests
+### 🧪 Running Tests
 
 Run the tests using Jest:
 
