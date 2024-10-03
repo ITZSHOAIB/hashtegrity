@@ -12,19 +12,10 @@
 
 ## 📦 Installation
 
-Install the package using any of the below commands:
+Install the package:
 
 ```bash
 npm install hashtegrity
-```
-```bash
-yarn add hashtegrity
-```
-```bash
-pnpm add hashtegrity
-```
-```bash
-bun add hashtegrity
 ```
 
 ## 🛠️ Usage
