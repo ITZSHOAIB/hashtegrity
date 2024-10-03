@@ -4,7 +4,7 @@
 
 ## 🚀 Features
 
-- **Fast and Efficient**: Built with [Bun](https://bun.sh), a super-fast JavaScript runtime.
+- **Fast and Efficient**: Built with [pnpm](https://pnpm.io/), a fast and efficient package manager.
 - **Versatile Hashing**: Supports multiple hashing algorithms like `sha256`, `md5`, and more.
 - **HMAC Generation**: Easily generate HMACs for added security.
 - **Data Integrity Validation**: Validate the integrity of your data with simple functions.
@@ -51,20 +51,20 @@ console.log(`Is data valid? ${isValid}`);
 
 ## 🧑‍💻 Development Guide
 
-### Install Dependencies
+### 🤖 Install Dependencies
 
-Install [Bun](https://bun.sh/) and then dependencies using Bun:
+Install [pnpm](https://pnpm.io/) and then dependencies using pnpm:
 
 ```bash
-bun install
+pnpm install
 ```
 
-## 🧪 Running Tests
+### 🧪 Running Tests
 
 Run the tests using Jest:
 
 ```bash
-bun run test
+pnpm test
 ```
 
 ## 🤝 Contribution
@@ -78,7 +78,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## 🌐 Links
 
-- [Bun](https://bun.sh) - The fast all-in-one JavaScript runtime.
+- [pnpm](https://pnpm.io) - The fast and efficient package manager.
 - [GitHub Repository](https://github.com/ITZSHOAIB/hashtegrity) - Contribute to the project.
 
 ---

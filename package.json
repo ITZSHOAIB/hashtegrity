@@ -1,6 +1,6 @@
 {
   "name": "hashtegrity",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "A library for generating hash and validating data integrity",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -8,28 +8,44 @@
   "type": "module",
   "scripts": {
     "build": "rollup -c",
-    "prepublishOnly": "bun run build",
     "test": "jest",
     "format": "biome format --write",
-    "lint": "biome check --fix"
+    "lint": "biome check --fix",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "changeset publish",
+    "prepare": "npx simple-git-hooks",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.3",
+    "@changesets/changelog-github": "^0.5.0",
+    "@changesets/cli": "^2.27.9",
     "@rollup/plugin-commonjs": "^28.0.0",
     "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.0",
-    "@types/bun": "latest",
     "@types/jest": "^29.5.13",
+    "@types/node": "^22.7.4",
     "jest": "^29.7.0",
     "rollup": "^4.24.0",
+    "simple-git-hooks": "^2.11.1",
     "ts-jest": "^29.2.5",
-    "tslib": "^2.7.0"
+    "ts-node": "^10.9.2",
+    "tslib": "^2.7.0",
+    "typescript": "^5.6.2"
   },
   "peerDependencies": {
     "typescript": "^5.6.2"
   },
   "files": ["dist", "src"],
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "keywords": ["hash", "integrity", "crypto", "validation"],
   "author": "Sohab Sk",
   "license": "MIT",
@@ -38,5 +54,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm typecheck && pnpm lint && pnpm test"
   }
 }
