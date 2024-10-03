@@ -69,7 +69,7 @@ pnpm test
 
 ## 🤝 Contribution
 
-We welcome contributions! Please see the CONTRIBUTING.md file for detailed guidelines on how to contribute.
+We welcome contributions! Please see the [CONTRIBUTING.md](https://github.com/ITZSHOAIB/hashtegrity/blob/main/CONTRIBUTING.md) file for detailed guidelines on how to contribute.
 
 
 ## 📜 License
