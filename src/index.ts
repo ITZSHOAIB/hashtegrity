@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+import * as crypto from "node:crypto";
 
 export const canonicalize = (data: unknown): string => {
   if (typeof data === "string") {

@@ -5,12 +5,12 @@ We welcome contributions to the `hashtegrity` project! Follow these steps to get
 ## Fork the Repository
 
 1. **Fork the repository**: Click the "Fork" button at the top right of the repository page.
-2. **Install Bun**: Visit the [official site](https://bun.sh/) to install Bun.
+2. **Install pnpm**: Visit the [official site](https://pnpm.io/) to install pnpm.
 3. **Clone your fork**: Clone your forked repository to your local machine.
    ```bash
    git clone https://github.com/ITZSHOAIB/hashtegrity.git
    cd hashtegrity
-   bun install
+   pnpm install
    ```
 
 ## Create a New Branch
@@ -28,14 +28,14 @@ Implement your feature or bugfix.
 
 Ensure all tests pass.
 ```bash
-bun run test
+pnpm test
 ```
 
 ## Create a Changeset
 
 Create a changeset to describe your changes.
 ```bash
-bun changeset
+pnpm changeset
 ```
 
 ## Commit Your Changes
