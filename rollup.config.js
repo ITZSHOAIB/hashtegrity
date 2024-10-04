@@ -1,24 +1,26 @@
-import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
-import typescript from "@rollup/plugin-typescript";
+import resolve from "@rollup/plugin-node-resolve";
 import terser from "@rollup/plugin-terser";
+import typescript from "@rollup/plugin-typescript";
 
 export default {
   input: "src/index.ts",
   output: [
     {
-      file: "dist/index.cjs.js",
+      file: "dist/index.cjs",
       format: "cjs",
       sourcemap: true,
-      
-      plugins: [terser()],
     },
     {
-      file: "dist/index.esm.js",
+      file: "dist/index.mjs",
       format: "esm",
       sourcemap: true,
-      plugins: [terser()],
     },
   ],
-  plugins: [resolve(), commonjs(), typescript({ tsconfig: "./tsconfig.json" })],
+  plugins: [
+    resolve(),
+    commonjs(),
+    typescript({ tsconfig: "./tsconfig.json" }),
+    terser(),
+  ],
 };

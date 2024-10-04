@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["dist", "node_modules", "tsconfig.json", "rollup.config.js"]
+    "ignore": ["dist", "node_modules", "tsconfig.json"]
   },
   "formatter": {
     "enabled": true,
