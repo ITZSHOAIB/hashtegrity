@@ -9,7 +9,11 @@
   "scripts": {
     "build": "pnpm clean && rollup -c",
     "clean": "rimraf dist",
-    "test": "jest",
+    "test": "jest --maxWorkers=50%",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --runInBand",
+    "test:coverage": "jest --coverage",
+    "test:changed": "jest --onlyChanged",
     "format": "biome format --write",
     "lint": "biome check --fix",
     "changeset": "changeset",
@@ -17,6 +21,9 @@
     "changeset:publish": "pnpm build && changeset publish",
     "prepare": "npx simple-git-hooks",
     "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "chokidar": "^4.0.1"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.3",

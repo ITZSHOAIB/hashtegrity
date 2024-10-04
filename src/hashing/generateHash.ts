@@ -1,20 +1,22 @@
 import * as crypto from "node:crypto";
 import { canonicalize } from "../utils/canonicalize";
 
-export type GenerateHashParams = {
+export type GenerateHashOptions = {
   data: unknown;
-  algorithm?: string;
   key?: string;
+  algorithm?: string;
+  metadata?: Record<string, unknown>;
 };
 
 export const generateHash = ({
   data,
-  algorithm = "sha256",
   key,
-}: GenerateHashParams): string => {
+  algorithm = "sha256",
+  metadata = {},
+}: GenerateHashOptions): string => {
   const hash = key
     ? crypto.createHmac(algorithm, key)
     : crypto.createHash(algorithm);
-  hash.update(canonicalize(data));
+  hash.update(canonicalize({ data, metadata }));
   return hash.digest("hex");
 };

@@ -1,5 +1,5 @@
-export { generateHash, type GenerateHashParams } from "./generateHash";
+export { generateHash, type GenerateHashOptions } from "./generateHash";
 export {
   generateFileHash,
-  type GenerateFileHashParams,
+  type GenerateFileHashOptions,
 } from "./generateFileHash";

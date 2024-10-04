@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["dist", "node_modules", "tsconfig.json"]
+    "ignore": ["dist", "node_modules", "tsconfig.json", "coverage"]
   },
   "formatter": {
     "enabled": true,
