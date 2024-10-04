@@ -1,4 +1,4 @@
-import { generateHash, generateHmac, validateIntegrity } from "../src/index";
+import { generateHash, validateIntegrity } from "../src/index";
 
 describe("hashtegrity", () => {
   const data = {
@@ -21,64 +21,73 @@ describe("hashtegrity", () => {
 
   describe("generateHash", () => {
     it("should generate a sha256 hash by default", () => {
-      const hash = generateHash(data);
+      const hash = generateHash({ data });
       expect(hash).toBeDefined();
       expect(hash).toHaveLength(64); // sha256 hash length
     });
 
     it("should generate a hash using the specified algorithm", () => {
-      const hash = generateHash(data, "md5");
+      const hash = generateHash({ data, algorithm: "md5" });
       expect(hash).toBeDefined();
       expect(hash).toHaveLength(32); // md5 hash length
     });
+
     it("should generate the same hash for objects with the same values but different key order", () => {
-      const hash1 = generateHash(data);
-      const hash2 = generateHash(anotherData);
+      const hash1 = generateHash({ data });
+      const hash2 = generateHash({ data: anotherData });
       expect(hash1).toBe(hash2);
     });
-  });
 
-  describe("generateHmac", () => {
-    it("should generate a sha256 HMAC by default", () => {
-      const hmac = generateHmac(data, key);
+    it("should generate a sha256 HMAC by default when key is provided", () => {
+      const hmac = generateHash({ data, key });
       expect(hmac).toBeDefined();
       expect(hmac).toHaveLength(64); // sha256 HMAC length
     });
 
-    it("should generate an HMAC using the specified algorithm", () => {
-      const hmac = generateHmac(data, key, "md5");
+    it("should generate an HMAC using the specified algorithm when key is provided", () => {
+      const hmac = generateHash({ data, algorithm: "md5", key });
       expect(hmac).toBeDefined();
       expect(hmac).toHaveLength(32); // md5 HMAC length
     });
-    it("should generate the same HMAC for objects with the same values but different key order", () => {
-      const hmac1 = generateHmac(data, key);
-      const hmac2 = generateHmac(anotherData, key);
+
+    it("should generate the same HMAC for objects with the same values but different key order when key is provided", () => {
+      const hmac1 = generateHash({ data, algorithm: "sha256", key });
+      const hmac2 = generateHash({
+        data: anotherData,
+        algorithm: "sha256",
+        key,
+      });
       expect(hmac1).toBe(hmac2);
     });
   });
 
   describe("validateIntegrity", () => {
     it("should validate a sha256 hash by default", () => {
-      const hash = generateHash(data);
-      const isValid = validateIntegrity(data, hash);
+      const hash = generateHash({ data });
+      const isValid = validateIntegrity({ data, hash });
       expect(isValid).toBe(true);
     });
 
     it("should validate a hash using the specified algorithm", () => {
-      const hash = generateHash(data, "md5");
-      const isValid = validateIntegrity(data, hash, "md5");
+      const hash = generateHash({ data, algorithm: "md5" });
+      const isValid = validateIntegrity({ data, hash, algorithm: "md5" });
       expect(isValid).toBe(true);
     });
 
     it("should validate a sha256 HMAC by default", () => {
-      const hmac = generateHmac(data, key);
-      const isValid = validateIntegrity(data, hmac, "sha256", key);
+      const hash = generateHash({ data, key });
+      const isValid = validateIntegrity({
+        data,
+        hash,
+        algorithm: "sha256",
+        key,
+      });
       expect(isValid).toBe(true);
     });
 
     it("should validate an HMAC using the specified algorithm", () => {
-      const hmac = generateHmac(data, key, "md5");
-      const isValid = validateIntegrity(data, hmac, "md5", key);
+      const hash = generateHash({ data, algorithm: "md5", key });
+      const isValid = validateIntegrity({ data, hash, algorithm: "md5", key });
       expect(isValid).toBe(true);
     });
   });
