@@ -1,5 +1,11 @@
 # hashtegrity
 
+## 1.0.1
+
+### Patch Changes
+
+- [#6](https://github.com/ITZSHOAIB/hashtegrity/pull/6) [`6d3c038`](https://github.com/ITZSHOAIB/hashtegrity/commit/6d3c0385c0391e4123fee953a0e2d03f5cdbeddd) Thanks [@ITZSHOAIB](https://github.com/ITZSHOAIB)! - cjs bundle fixes
+
 ## 1.0.0
 
 ### Major Changes
