@@ -1,6 +1,6 @@
-# 🌟 hashtegrity 🌟
+# 🌟 Hashtegrity 🌟
 
-**Secure your data with ease!** `hashtegrity` is a powerful library for generating hashes and validating data integrity, ensuring your data remains untampered and secure.
+**Secure your data with ease!** `Hashtegrity` is a powerful library for generating hashes and validating data integrity, ensuring your data remains untampered and secure.
 
 ## 🚀 Features
 
@@ -23,29 +23,29 @@ npm install hashtegrity
 ### Generate a Hash
 
 ```typescript
-import { generateHash } from './dist/index.cjs.js';
+import { generateHash } from 'hashtegrity';
 
 const data = { key: 'value', bool: true, num: 42 };
-const hash = generateHash(data);
+const hash = generateHash({ data });
 console.log(`Hash: ${hash}`);
 ```
 
 ### Generate an HMAC
 
 ```typescript
-import { generateHmac } from './dist/index.cjs.js';
+import { generateHash } from 'hashtegrity';
 
 const key = 'secret-key';
-const hmac = generateHmac(data, key);
+const hmac = generateHash({ data, key });
 console.log(`HMAC: ${hmac}`);
 ```
 
 ### Validate Data Integrity
 
 ```typescript
-import { validateIntegrity } from './dist/index.cjs.js';
+import { validateIntegrity } from 'hashtegrity';
 
-const isValid = validateIntegrity(data, hash);
+const isValid = validateIntegrity({ data, hash });
 console.log(`Is data valid? ${isValid}`);
 ```
 
@@ -74,7 +74,7 @@ We welcome contributions! Please see the [CONTRIBUTING.md](https://github.com/IT
 
 ## 📜 License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the [LICENSE file](https://github.com/ITZSHOAIB/hashtegrity/blob/main/LICENSE) for details.
 
 ## 🌐 Links
 
