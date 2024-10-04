@@ -1,5 +1,11 @@
 # hashtegrity
 
+## 1.1.0
+
+### Minor Changes
+
+- [#11](https://github.com/ITZSHOAIB/hashtegrity/pull/11) [`992fc0e`](https://github.com/ITZSHOAIB/hashtegrity/commit/992fc0e0e2ee10ba67e4f5be61c86119fe84de21) Thanks [@ITZSHOAIB](https://github.com/ITZSHOAIB)! - feat: File integrity monitoring
+
 ## 1.0.1
 
 ### Patch Changes
