@@ -8,6 +8,8 @@
 - **Versatile Hashing**: Supports multiple hashing algorithms like `sha256`, `md5`, and more.
 - **HMAC Generation**: Easily generate HMACs for added security.
 - **Data Integrity Validation**: Validate the integrity of your data with simple functions.
+- **File Integrity Validation**: Validate the integrity of your file easily.
+- **File Integrity Monitoring**: Monitor file changes and validate integrity in real-time.
 - **TypeScript Support**: Fully typed for a seamless development experience.
 
 ## 📦 Installation
@@ -23,21 +25,32 @@ npm install hashtegrity
 ### Generate a Hash
 
 ```typescript
-import { generateHash } from 'hashtegrity';
+import { generateHash } from "hashtegrity";
 
-const data = { key: 'value', bool: true, num: 42 };
-const hash = generateHash({ data });
-console.log(`Hash: ${hash}`);
+const hash = generateHash({ data: { key: "value" }, algorithm: "sha256" });
 ```
 
 ### Generate an HMAC
 
 ```typescript
-import { generateHash } from 'hashtegrity';
+import { generateHash } from "hashtegrity";
 
-const key = 'secret-key';
-const hmac = generateHash({ data, key });
-console.log(`HMAC: ${hmac}`);
+const hmac = generateHash({
+  data: "message",
+  key: "secret-key",
+  algorithm: "sha256",
+});
+```
+
+### Generate a File Hash
+
+```typescript
+import { generateFileHash } from "hashtegrity";
+
+const hash = await generateFileHash({
+  filePath: "path/to/your/file.txt",
+  algorithm: "sha256",
+});
 ```
 
 ### Validate Data Integrity
@@ -45,8 +58,48 @@ console.log(`HMAC: ${hmac}`);
 ```typescript
 import { validateIntegrity } from 'hashtegrity';
 
-const isValid = validateIntegrity({ data, hash });
-console.log(`Is data valid? ${isValid}`);
+const isValid = await validateIntegrity({
+  type: "data",
+  data: "your-data-of-any-type",
+  hash: "4d4f638fd1c15eb71e1c7b46556c6d76cf6cc0cf1961d9e39a5fdc988a22cfe2",
+  algorithm: "sha256",
+});
+```
+
+### Validate File Integrity
+
+```typescript
+import { validateIntegrity } from 'hashtegrity';
+
+const isValid = await validateIntegrity({
+  type: "file",
+  filePath: "path/to/your/file.txt",
+  hash: "4d4f638fd1c15eb71e1c7b46556c6d76cf6cc0cf1961d9e39a5fdc988a22cfe2",
+  algorithm: "sha256",
+});
+```
+
+### Monitor File Integrity
+
+```typescript
+import { monitorFileIntegrity } from 'hashtegrity';
+
+const options = {
+  filePath: 'path/to/your/file.txt',
+  algorithm: 'sha256',
+  key: 'your-secret-key',
+  metadata: { custom: 'data' },
+  expectedHash: 'expected-file-hash',
+  onIntegrityCheckFailed: (error) => {
+    console.error('Integrity check failed:', error);
+  },
+  onError: (error) => {
+    console.error('Error:', error);
+  },
+};
+
+await monitorFileIntegrity(options);
+console.log('Monitoring started');
 ```
 
 ## 🧑‍💻 Development Guide
