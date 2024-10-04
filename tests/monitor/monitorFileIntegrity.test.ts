@@ -1,6 +1,6 @@
 import * as fs from "node:fs";
-import { generateFileHash } from "../../src/hashing/generateFileHash";
-import { monitorFileIntegrity } from "../../src/monitoring/monitorFileIntegrity";
+import { generateFileHash } from "../../src/hash/generateFileHash";
+import { monitorFileIntegrity } from "../../src/monitor/monitorFileIntegrity";
 import { key } from "../data/testData";
 
 jest.mock("node:fs", () => ({
@@ -8,7 +8,7 @@ jest.mock("node:fs", () => ({
   watch: jest.fn(),
 }));
 
-jest.mock("../../src/hashing/generateFileHash");
+jest.mock("../../src/hash/generateFileHash");
 
 describe("monitorFileIntegrity", () => {
   const algorithm = "sha256";

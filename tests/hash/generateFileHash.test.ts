@@ -1,5 +1,5 @@
 import * as path from "node:path";
-import { generateFileHash } from "../../src/hashing/generateFileHash";
+import { generateFileHash } from "../../src/hash/generateFileHash";
 import { key } from "../data/testData";
 
 describe("generateFileHash", () => {

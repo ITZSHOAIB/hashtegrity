@@ -1,5 +1,5 @@
 import { watch } from "node:fs";
-import { generateFileHash } from "../hashing";
+import { generateFileHash } from "../hash";
 
 export type MonitorFileIntegrityOptions = {
   filePath: string;

@@ -1,2 +1,2 @@
-export * from "./hashing";
-export * from "./validateIntegrity";
+export * from "./hash";
+export * from "./validate";

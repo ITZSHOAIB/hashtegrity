@@ -1,21 +1,21 @@
 import * as path from "node:path";
-import { generateFileHash } from "../src/hashing/generateFileHash";
-import { generateHash } from "../src/hashing/generateHash";
+import { generateFileHash } from "../../src/hash/generateFileHash";
+import { generateHash } from "../../src/hash/generateHash";
 import {
   type IntegrityValidationType,
   validateIntegrity,
-} from "../src/validateIntegrity";
-import { data, key } from "./data/testData";
+} from "../../src/validate/validateIntegrity";
+import { data, key } from "../data/testData";
 
 describe("validateIntegrity", () => {
-  const testFilePath = path.join(__dirname, "data", "testFile.txt");
+  const testFilePath = path.join(__dirname, "../data", "testFile.txt");
 
   it("should validate data integrity correctly", async () => {
     const hash = generateHash({ data, algorithm: "sha256" });
     const isValid = await validateIntegrity({
       type: "data",
       data,
-      hash,
+      expectedHash: hash,
       algorithm: "sha256",
     });
     expect(isValid).toBe(true);
@@ -29,7 +29,7 @@ describe("validateIntegrity", () => {
     const isValid = await validateIntegrity({
       type: "file",
       filePath: testFilePath,
-      hash,
+      expectedHash: hash,
       algorithm: "sha256",
     });
     expect(isValid).toBe(true);
@@ -40,7 +40,7 @@ describe("validateIntegrity", () => {
     const isValid = await validateIntegrity({
       type: "data",
       data,
-      hash,
+      expectedHash: hash,
       algorithm: "sha256",
       key,
     });
@@ -56,7 +56,7 @@ describe("validateIntegrity", () => {
     const isValid = await validateIntegrity({
       type: "file",
       filePath: testFilePath,
-      hash,
+      expectedHash: hash,
       algorithm: "sha256",
       key,
     });
@@ -68,7 +68,7 @@ describe("validateIntegrity", () => {
       validateIntegrity({
         type: "invalid" as IntegrityValidationType,
         data,
-        hash: "dummyHash",
+        expectedHash: "dummyHash",
       }),
     ).rejects.toThrow("Invalid type or missing data/filePath");
   });
@@ -77,7 +77,7 @@ describe("validateIntegrity", () => {
     await expect(
       validateIntegrity({
         type: "data",
-        hash: "dummyHash",
+        expectedHash: "dummyHash",
       }),
     ).rejects.toThrow("Invalid type or missing data/filePath");
   });
@@ -86,7 +86,7 @@ describe("validateIntegrity", () => {
     await expect(
       validateIntegrity({
         type: "file",
-        hash: "dummyHash",
+        expectedHash: "dummyHash",
       }),
     ).rejects.toThrow("Invalid type or missing data/filePath");
   });
