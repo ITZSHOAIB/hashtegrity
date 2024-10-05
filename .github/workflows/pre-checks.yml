@@ -13,8 +13,7 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 8
+        
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -27,6 +26,14 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          commit_message: 'chore: format'
+          commit_user_name: 'github-actions[bot]'
+          commit_user_email: 'github-actions[bot]@users.noreply.github.com'
+
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -36,8 +43,7 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 8
+        
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -52,23 +58,3 @@ jobs:
 
       - name: Typecheck
         run: pnpm typecheck
-
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 8
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: "pnpm"
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-      - name: Test
-        run: pnpm test:ci

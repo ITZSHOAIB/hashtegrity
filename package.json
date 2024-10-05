@@ -81,5 +81,9 @@
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm typecheck && pnpm lint && pnpm test"
+  },
+  "packageManager": "pnpm@9.12.0",
+  "engines": {
+    "node": ">=20.0.0"
   }
 }
