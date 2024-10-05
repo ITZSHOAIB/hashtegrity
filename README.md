@@ -4,7 +4,6 @@
 
 ## 🚀 Features
 
-- **Fast and Efficient**: Built with [pnpm](https://pnpm.io/), a fast and efficient package manager.
 - **Versatile Hashing**: Supports multiple hashing algorithms like `sha256`, `md5`, and more.
 - **HMAC Generation**: Easily generate HMACs for added security.
 - **Data Integrity Validation**: Validate the integrity of your data with simple functions.
@@ -53,6 +52,16 @@ const hash = await generateFileHash({
 });
 ```
 
+### Generate Directory Hash
+
+```typescript
+import { generateDirectoryHash } from 'hashtegrity';
+
+const hash = await generateDirectoryHash({
+  directoryPath: "path/to/directory",
+});
+```
+
 ### Validate Data Integrity
 
 ```typescript
@@ -61,7 +70,7 @@ import { validateIntegrity } from 'hashtegrity';
 const isValid = await validateIntegrity({
   type: "data",
   data: "your-data-of-any-type",
-  hash: "4d4f638fd1c15eb71e1c7b46556c6d76cf6cc0cf1961d9e39a5fdc988a22cfe2",
+  expectedHash: "4d4f638fd1c15eb71e1c7b46556c6d76cf6cc0cf1961d9e39a5fdc988a22cfe2",
   algorithm: "sha256",
 });
 ```
@@ -74,7 +83,20 @@ import { validateIntegrity } from 'hashtegrity';
 const isValid = await validateIntegrity({
   type: "file",
   filePath: "path/to/your/file.txt",
-  hash: "4d4f638fd1c15eb71e1c7b46556c6d76cf6cc0cf1961d9e39a5fdc988a22cfe2",
+  expectedHash: "4d4f638fd1c15eb71e1c7b46556c6d76cf6cc0cf1961d9e39a5fdc988a22cfe2",
+  algorithm: "sha256",
+});
+```
+
+### Validate Directory Integrity
+
+```typescript
+import { validateIntegrity } from 'hashtegrity';
+
+const isValid = await validateIntegrity({
+  type: "directory",
+  filePath: "path/to/your/directory",
+  expectedHash: "4d4f638fd1c15eb71e1c7b46556c6d76cf6cc0cf1961d9e39a5fdc988a22cfe2",
   algorithm: "sha256",
 });
 ```
@@ -82,57 +104,62 @@ const isValid = await validateIntegrity({
 ### Monitor File Integrity
 
 ```typescript
-import { monitorFileIntegrity } from 'hashtegrity';
+import { monitorIntegrity } from 'hashtegrity';
 
 const options = {
-  filePath: 'path/to/your/file.txt',
-  algorithm: 'sha256',
-  key: 'your-secret-key',
-  metadata: { custom: 'data' },
-  expectedHash: 'expected-file-hash',
+  type: "file",
+  filePath: "path/to/your/file.txt",
+  algorithm: "sha256",
+  key: "your-secret-key",
+  metadata: { custom: "data" },
+  expectedHash:
+    "4d4f638fd1c15eb71e1c7b46556c6d76cf6cc0cf1961d9e39a5fdc988a22cfe2",
   onIntegrityCheckFailed: (error) => {
-    console.error('Integrity check failed:', error);
+    console.error("Integrity check failed:", error);
   },
   onError: (error) => {
-    console.error('Error:', error);
+    console.error("Error:", error);
   },
 };
 
-await monitorFileIntegrity(options);
-console.log('Monitoring started');
+await monitorIntegrity(options);
+console.log("Monitoring started");
 ```
 
-## 🧑‍💻 Development Guide
+### Monitor Directory Integrity
 
-### 🤖 Install Dependencies
+```typescript
+import { monitorIntegrity } from 'hashtegrity';
 
-Install [pnpm](https://pnpm.io/) and then dependencies using pnpm:
+const options = {
+  type: "directory",
+  filePath: "path/to/your/directory",
+  algorithm: "sha256",
+  key: "your-secret-key",
+  metadata: { custom: "data" },
+  expectedHash:
+    "4d4f638fd1c15eb71e1c7b46556c6d76cf6cc0cf1961d9e39a5fdc988a22cfe2",
+  onIntegrityCheckFailed: (error) => {
+    console.error("Integrity check failed:", error);
+  },
+  onError: (error) => {
+    console.error("Error:", error);
+  },
+};
 
-```bash
-pnpm install
-```
-
-### 🧪 Running Tests
-
-Run the tests using Jest:
-
-```bash
-pnpm test
+await monitorIntegrity(options);
+console.log("Monitoring started");
 ```
 
 ## 🤝 Contribution
 
-We welcome contributions! Please see the [CONTRIBUTING.md](https://github.com/ITZSHOAIB/hashtegrity/blob/main/CONTRIBUTING.md) file for detailed guidelines on how to contribute.
+We welcome contributions! Please see the [CONTRIBUTING.md](.github/CONTRIBUTING.md) file for detailed guidelines on how to contribute.
 
 
 ## 📜 License
 
-This project is licensed under the MIT License. See the [LICENSE file](https://github.com/ITZSHOAIB/hashtegrity/blob/main/LICENSE) for details.
+This project is licensed under the MIT License. See the [LICENSE file](/LICENSE) for details.
 
-## 🌐 Links
-
-- [pnpm](https://pnpm.io) - The fast and efficient package manager.
-- [GitHub Repository](https://github.com/ITZSHOAIB/hashtegrity) - Contribute to the project.
 
 ---
 

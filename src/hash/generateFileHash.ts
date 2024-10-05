@@ -1,19 +1,19 @@
 import * as fs from "node:fs";
 import { generateHash } from "./generateHash";
 
-export type GenerateFileHashOptions = {
+export type FileHashOptions = {
   filePath: string;
-  key?: string;
   algorithm?: string;
+  key?: string;
   metadata?: Record<string, unknown>;
 };
 
 export const generateFileHash = ({
   filePath,
+  algorithm,
   key,
-  algorithm = "sha256",
-  metadata = {},
-}: GenerateFileHashOptions): Promise<string> => {
+  metadata,
+}: FileHashOptions): Promise<string> => {
   return new Promise((resolve, reject) => {
     if (!fs.existsSync(filePath)) {
       reject(new Error(`File not found: ${filePath}`));

@@ -1,4 +1,4 @@
-import { generateHash } from "../../src/hashing/generateHash";
+import { generateHash } from "../../src/hash/generateHash";
 import { anotherData, data, key } from "../data/testData";
 
 describe("generateHash", () => {
