@@ -52,6 +52,16 @@ const hash = await generateFileHash({
 });
 ```
 
+### Generate Directory Hash
+
+```typescript
+import { generateDirectoryHash } from 'hashtegrity';
+
+const hash = await generateDirectoryHash({
+  directoryPath: "path/to/directory",
+});
+```
+
 ### Validate Data Integrity
 
 ```typescript
@@ -60,7 +70,7 @@ import { validateIntegrity } from 'hashtegrity';
 const isValid = await validateIntegrity({
   type: "data",
   data: "your-data-of-any-type",
-  hash: "4d4f638fd1c15eb71e1c7b46556c6d76cf6cc0cf1961d9e39a5fdc988a22cfe2",
+  expectedHash: "4d4f638fd1c15eb71e1c7b46556c6d76cf6cc0cf1961d9e39a5fdc988a22cfe2",
   algorithm: "sha256",
 });
 ```
@@ -73,7 +83,20 @@ import { validateIntegrity } from 'hashtegrity';
 const isValid = await validateIntegrity({
   type: "file",
   filePath: "path/to/your/file.txt",
-  hash: "4d4f638fd1c15eb71e1c7b46556c6d76cf6cc0cf1961d9e39a5fdc988a22cfe2",
+  expectedHash: "4d4f638fd1c15eb71e1c7b46556c6d76cf6cc0cf1961d9e39a5fdc988a22cfe2",
+  algorithm: "sha256",
+});
+```
+
+### Validate Directory Integrity
+
+```typescript
+import { validateIntegrity } from 'hashtegrity';
+
+const isValid = await validateIntegrity({
+  type: "directory",
+  filePath: "path/to/your/directory",
+  expectedHash: "4d4f638fd1c15eb71e1c7b46556c6d76cf6cc0cf1961d9e39a5fdc988a22cfe2",
   algorithm: "sha256",
 });
 ```
@@ -81,24 +104,51 @@ const isValid = await validateIntegrity({
 ### Monitor File Integrity
 
 ```typescript
-import { monitorFileIntegrity } from 'hashtegrity';
+import { monitorIntegrity } from 'hashtegrity';
 
 const options = {
-  filePath: 'path/to/your/file.txt',
-  algorithm: 'sha256',
-  key: 'your-secret-key',
-  metadata: { custom: 'data' },
-  expectedHash: 'expected-file-hash',
+  type: "file",
+  filePath: "path/to/your/file.txt",
+  algorithm: "sha256",
+  key: "your-secret-key",
+  metadata: { custom: "data" },
+  expectedHash:
+    "4d4f638fd1c15eb71e1c7b46556c6d76cf6cc0cf1961d9e39a5fdc988a22cfe2",
   onIntegrityCheckFailed: (error) => {
-    console.error('Integrity check failed:', error);
+    console.error("Integrity check failed:", error);
   },
   onError: (error) => {
-    console.error('Error:', error);
+    console.error("Error:", error);
   },
 };
 
-await monitorFileIntegrity(options);
-console.log('Monitoring started');
+await monitorIntegrity(options);
+console.log("Monitoring started");
+```
+
+### Monitor Directory Integrity
+
+```typescript
+import { monitorIntegrity } from 'hashtegrity';
+
+const options = {
+  type: "directory",
+  filePath: "path/to/your/directory",
+  algorithm: "sha256",
+  key: "your-secret-key",
+  metadata: { custom: "data" },
+  expectedHash:
+    "4d4f638fd1c15eb71e1c7b46556c6d76cf6cc0cf1961d9e39a5fdc988a22cfe2",
+  onIntegrityCheckFailed: (error) => {
+    console.error("Integrity check failed:", error);
+  },
+  onError: (error) => {
+    console.error("Error:", error);
+  },
+};
+
+await monitorIntegrity(options);
+console.log("Monitoring started");
 ```
 
 ## 🤝 Contribution
