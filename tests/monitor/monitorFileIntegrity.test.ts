@@ -14,6 +14,10 @@ describe("monitorFileIntegrity", () => {
   const algorithm = "sha256";
   const testFilePath = "mocked-file-path";
 
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it("should call onIntegrityCheckFailed when integrity check fails", async () => {
     const onIntegrityCheckFailed = jest.fn();
     const onError = jest.fn();

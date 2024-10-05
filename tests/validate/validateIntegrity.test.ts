@@ -1,77 +1,119 @@
-import * as fs from "node:fs";
-import * as path from "node:path";
+import { generateDirectoryHash } from "../../src/hash";
 import { generateFileHash } from "../../src/hash/generateFileHash";
 import { generateHash } from "../../src/hash/generateHash";
 import { validateIntegrity } from "../../src/validate/validateIntegrity";
 import { data, key } from "../data/testData";
 
+jest.mock("../../src/hash/generateFileHash");
+jest.mock("../../src/hash/generateHash");
+jest.mock("../../src/hash/generateDirectoryHash");
+
 describe("validateIntegrity", () => {
-  const testFilePath = path.join(__dirname, "../data", "testFile.txt");
-  const fileContent = "test content";
+  const filePath = "test-file.txt";
+  const directoryPath = "test-dir";
+  const expectedHash = "expected-file-hash";
 
-  beforeAll(() => {
-    // Create a test file
-    if (!fs.existsSync(testFilePath)) {
-      fs.writeFileSync(testFilePath, fileContent);
-    }
-  });
-  afterAll(() => {
-    // Clean up the test file
-    if (fs.existsSync(testFilePath)) {
-      fs.rmSync(testFilePath);
-    }
+  beforeEach(() => {
+    jest.clearAllMocks();
   });
 
-  it("should validate data integrity correctly", async () => {
-    const hash = generateHash({ data, algorithm: "sha256" });
-    const isValid = await validateIntegrity({
-      type: "data",
-      data,
-      expectedHash: hash,
-      algorithm: "sha256",
+  describe("data integrity validation", () => {
+    it("should return true if the data hash matches the expected hash", async () => {
+      (generateHash as jest.Mock).mockReturnValue(expectedHash);
+
+      const isValid = await validateIntegrity({
+        type: "data",
+        data,
+        expectedHash,
+      });
+
+      expect(isValid).toBe(true);
+      expect(generateHash).toHaveBeenCalledWith({ data });
     });
-    expect(isValid).toBe(true);
+
+    it("should return false if the data hash does not match the expected hash", async () => {
+      (generateHash as jest.Mock).mockReturnValue("different-hash");
+
+      const isValid = await validateIntegrity({
+        type: "data",
+        data,
+        expectedHash,
+      });
+
+      expect(isValid).toBe(false);
+      expect(generateHash).toHaveBeenCalledWith({ data });
+    });
   });
 
-  it("should validate file integrity correctly", async () => {
-    const hash = await generateFileHash({
-      filePath: testFilePath,
-      algorithm: "sha256",
+  describe("file integrity validation", () => {
+    it("should return true if the file hash matches the expected hash", async () => {
+      (generateFileHash as jest.Mock).mockResolvedValue(expectedHash);
+
+      const isValid = await validateIntegrity({
+        type: "file",
+        filePath,
+        expectedHash,
+      });
+
+      expect(isValid).toBe(true);
+      expect(generateFileHash).toHaveBeenCalledWith({
+        filePath,
+      });
     });
-    const isValid = await validateIntegrity({
-      type: "file",
-      filePath: testFilePath,
-      expectedHash: hash,
-      algorithm: "sha256",
+
+    it("should return false if the file hash does not match the expected hash", async () => {
+      (generateFileHash as jest.Mock).mockResolvedValue("different-hash");
+
+      const isValid = await validateIntegrity({
+        type: "file",
+        filePath,
+        expectedHash,
+      });
+
+      expect(isValid).toBe(false);
+      expect(generateFileHash).toHaveBeenCalledWith({
+        filePath,
+      });
     });
-    expect(isValid).toBe(true);
   });
 
-  it("should validate data integrity with HMAC correctly", async () => {
-    const hash = generateHash({ data, algorithm: "sha256", key });
-    const isValid = await validateIntegrity({
-      type: "data",
-      data,
-      expectedHash: hash,
-      algorithm: "sha256",
-      key,
-    });
-    expect(isValid).toBe(true);
-  });
+  describe("directory integrity validation", () => {
+    it("should return true if the directory hash matches the expected hash", async () => {
+      (generateDirectoryHash as jest.Mock).mockResolvedValue(expectedHash);
 
-  it("should validate file integrity with HMAC correctly", async () => {
-    const hash = await generateFileHash({
-      filePath: testFilePath,
-      algorithm: "sha256",
-      key,
+      const isValid = await validateIntegrity({
+        type: "directory",
+        directoryPath,
+        key,
+        includeStructure: true,
+        expectedHash,
+      });
+
+      expect(isValid).toBe(true);
+      expect(generateDirectoryHash).toHaveBeenCalledWith({
+        directoryPath,
+        key,
+        includeStructure: true,
+      });
     });
-    const isValid = await validateIntegrity({
-      type: "file",
-      filePath: testFilePath,
-      expectedHash: hash,
-      algorithm: "sha256",
-      key,
+
+    it("should return false if the directory hash does not match the expected hash", async () => {
+      (generateDirectoryHash as jest.Mock).mockResolvedValue("different-hash");
+
+      const isValid = await validateIntegrity({
+        type: "directory",
+        directoryPath,
+        key,
+        includeStructure: true,
+        expectedHash,
+      });
+
+      expect(isValid).toBe(false);
+      expect(generateDirectoryHash).toHaveBeenCalledWith({
+        directoryPath,
+        key,
+        includeStructure: true,
+      });
     });
-    expect(isValid).toBe(true);
   });
 });
