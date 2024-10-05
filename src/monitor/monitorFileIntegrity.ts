@@ -1,11 +1,7 @@
 import { watch } from "node:fs";
-import { generateFileHash } from "../hash";
+import { generateFileHash, type FileHashOptions } from "../hash";
 
-export type MonitorFileIntegrityOptions = {
-  filePath: string;
-  algorithm?: string;
-  key?: string;
-  metadata?: Record<string, unknown>;
+export type MonitorFileIntegrityOptions = FileHashOptions & {
   expectedHash?: string;
   onIntegrityCheckFailed?: (error: Error) => void;
   onError?: (error: unknown) => void;
@@ -13,8 +9,8 @@ export type MonitorFileIntegrityOptions = {
 
 export const monitorFileIntegrity = async ({
   filePath,
-  algorithm = "sha256",
   key,
+  algorithm = "sha256",
   metadata = {},
   expectedHash,
   onIntegrityCheckFailed,

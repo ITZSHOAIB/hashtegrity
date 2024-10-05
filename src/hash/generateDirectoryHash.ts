@@ -1,4 +1,5 @@
 import * as path from "node:path";
+import * as fs from "node:fs";
 import * as glob from "glob";
 import { generateFileHash } from "./generateFileHash";
 import { generateHash } from "./generateHash";
@@ -13,18 +14,18 @@ export type DirectoryHashOptions = {
   includeStructure?: boolean;
 };
 
-export const generateDirectoryHash = async (
-  options: DirectoryHashOptions,
-): Promise<string> => {
-  const {
-    directoryPath,
-    algorithm = "sha256",
-    include = ["**/*"],
-    exclude = [],
-    key,
-    metadata = {},
-    includeStructure = false,
-  } = options;
+export const generateDirectoryHash = async ({
+  directoryPath,
+  key,
+  algorithm = "sha256",
+  include = ["**/*"],
+  exclude = [],
+  metadata = {},
+  includeStructure = false,
+}: DirectoryHashOptions): Promise<string> => {
+  if (!fs.existsSync(directoryPath)) {
+    throw new Error(`Directory not found: '${directoryPath}'`);
+  }
 
   const files = glob.sync(include.join(","), {
     cwd: directoryPath,
@@ -32,16 +33,24 @@ export const generateDirectoryHash = async (
     nodir: true,
   });
 
+  files.sort();
+
   const fileHashes = await Promise.all(
     files.map(async (file) => {
       const filePath = path.join(directoryPath, file);
+
+      const fileMetadata = includeStructure
+        ? { ...metadata, filePath }
+        : metadata;
+
       const fileHash = await generateFileHash({
         filePath,
         algorithm,
         key,
-        metadata,
+        metadata: fileMetadata,
       });
-      return includeStructure ? `${file}:${fileHash}` : fileHash;
+
+      return fileHash;
     }),
   );
 

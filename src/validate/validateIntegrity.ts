@@ -9,41 +9,64 @@ import {
 
 export type IntegrityValidationType = "data" | "file" | "directory";
 
-export type IntegrityValidationOptions = (
-  | Omit<DataHashOptions, "data">
-  | Omit<FileHashOptions, "filePath">
-  | Omit<DirectoryHashOptions, "directoryPath">
-) & {
+type BaseIntegrityValidationOptions = {
   type: IntegrityValidationType;
   expectedHash: string;
-  data?: unknown;
-  filePath?: string;
-  directoryPath?: string;
 };
 
-export const validateIntegrity = async (
-  options: IntegrityValidationOptions,
-): Promise<boolean> => {
-  const { type, data, filePath, directoryPath, expectedHash, ...hashOptions } =
-    options;
+type DataIntegrityValidationOptions = BaseIntegrityValidationOptions &
+  DataHashOptions & {
+    type: "data";
+  };
 
-  if (type === "data" && data !== undefined) {
-    return generateHash({ data, ...hashOptions }) === expectedHash;
+type FileIntegrityValidationOptions = BaseIntegrityValidationOptions &
+  FileHashOptions & {
+    type: "file";
+  };
+
+type DirectoryIntegrityValidationOptions = BaseIntegrityValidationOptions &
+  DirectoryHashOptions & {
+    type: "directory";
+  };
+
+export type IntegrityValidationOptions =
+  | DataIntegrityValidationOptions
+  | FileIntegrityValidationOptions
+  | DirectoryIntegrityValidationOptions;
+
+export const validateIntegrity = async ({
+  type,
+  expectedHash,
+  ...hashOptions
+}: IntegrityValidationOptions): Promise<boolean> => {
+  if (type === "data") {
+    const { data, ...restOptions } =
+      hashOptions as DataIntegrityValidationOptions;
+
+    return generateHash({ data, ...restOptions }) === expectedHash;
   }
 
-  if (type === "file" && filePath !== undefined) {
+  if (type === "file") {
+    const { filePath, ...restOptions } =
+      hashOptions as FileIntegrityValidationOptions;
+
     const fileHash = await generateFileHash({
       filePath,
-      ...hashOptions,
+      ...restOptions,
     });
+
     return fileHash === expectedHash;
   }
 
-  if (type === "directory" && directoryPath !== undefined) {
+  if (type === "directory") {
+    const { directoryPath, ...restOptions } =
+      hashOptions as DirectoryIntegrityValidationOptions;
+
     const directoryHash = await generateDirectoryHash({
       directoryPath,
-      ...hashOptions,
+      ...restOptions,
     });
+
     return directoryHash === expectedHash;
   }
 

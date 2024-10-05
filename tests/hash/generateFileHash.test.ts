@@ -1,9 +1,24 @@
 import * as path from "node:path";
+import * as fs from "node:fs";
 import { generateFileHash } from "../../src/hash/generateFileHash";
 import { key } from "../data/testData";
 
 describe("generateFileHash", () => {
   const testFilePath = path.join(__dirname, "../data", "testFile.txt");
+  const fileContent = "test content";
+
+  beforeAll(() => {
+    // Create a test file
+    if (!fs.existsSync(testFilePath)) {
+      fs.writeFileSync(testFilePath, fileContent);
+    }
+  });
+  afterAll(() => {
+    // Clean up the test file
+    if (fs.existsSync(testFilePath)) {
+      fs.rmSync(testFilePath);
+    }
+  });
 
   it("should generate a sha256 hash by default", async () => {
     const hash = await generateFileHash({ filePath: testFilePath });
