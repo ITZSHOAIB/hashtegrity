@@ -80,7 +80,7 @@
     "access": "public"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm typecheck && pnpm lint && pnpm test"
+    "pre-commit": "pnpm typecheck && pnpm lint && pnpm test:ci"
   },
   "packageManager": "pnpm@9.12.0",
   "engines": {
