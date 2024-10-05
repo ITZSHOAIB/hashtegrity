@@ -3,16 +3,16 @@ import { generateHash } from "./generateHash";
 
 export type FileHashOptions = {
   filePath: string;
-  key?: string;
   algorithm?: string;
+  key?: string;
   metadata?: Record<string, unknown>;
 };
 
 export const generateFileHash = ({
   filePath,
+  algorithm,
   key,
-  algorithm = "sha256",
-  metadata = {},
+  metadata,
 }: FileHashOptions): Promise<string> => {
   return new Promise((resolve, reject) => {
     if (!fs.existsSync(filePath)) {

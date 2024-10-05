@@ -15,3 +15,4 @@ export const anotherData = {
 };
 
 export const key = "secret-key";
+export const expectedHash = "expected-hash";

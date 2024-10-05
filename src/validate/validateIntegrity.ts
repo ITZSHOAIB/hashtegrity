@@ -7,10 +7,10 @@ import {
   generateHash,
 } from "../hash";
 
-export type IntegrityValidationType = "data" | "file" | "directory";
+export type ValidationType = "data" | "file" | "directory";
 
 type BaseIntegrityValidationOptions = {
-  type: IntegrityValidationType;
+  type: ValidationType;
   expectedHash: string;
 };
 
@@ -43,12 +43,20 @@ export const validateIntegrity = async ({
     const { data, ...restOptions } =
       hashOptions as DataIntegrityValidationOptions;
 
+    if (!data) {
+      throw new Error("Data is required for data integrity validation");
+    }
+
     return generateHash({ data, ...restOptions }) === expectedHash;
   }
 
   if (type === "file") {
     const { filePath, ...restOptions } =
       hashOptions as FileIntegrityValidationOptions;
+
+    if (!filePath) {
+      throw new Error("File path is required for file integrity validation");
+    }
 
     const fileHash = await generateFileHash({
       filePath,
@@ -61,6 +69,12 @@ export const validateIntegrity = async ({
   if (type === "directory") {
     const { directoryPath, ...restOptions } =
       hashOptions as DirectoryIntegrityValidationOptions;
+
+    if (!directoryPath) {
+      throw new Error(
+        "Directory path is required for directory integrity validation",
+      );
+    }
 
     const directoryHash = await generateDirectoryHash({
       directoryPath,

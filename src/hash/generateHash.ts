@@ -3,8 +3,8 @@ import { canonicalize } from "../utils/canonicalize";
 
 export type DataHashOptions = {
   data: unknown;
-  key?: string;
   algorithm?: string;
+  key?: string;
   metadata?: Record<string, unknown>;
 };
 

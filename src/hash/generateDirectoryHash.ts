@@ -7,20 +7,20 @@ import { generateHash } from "./generateHash";
 export type DirectoryHashOptions = {
   directoryPath: string;
   algorithm?: string;
+  key?: string;
   include?: string[];
   exclude?: string[];
-  key?: string;
   metadata?: Record<string, unknown>;
   includeStructure?: boolean;
 };
 
 export const generateDirectoryHash = async ({
   directoryPath,
+  algorithm,
   key,
-  algorithm = "sha256",
+  metadata,
   include = ["**/*"],
   exclude = [],
-  metadata = {},
   includeStructure = false,
 }: DirectoryHashOptions): Promise<string> => {
   if (!fs.existsSync(directoryPath)) {

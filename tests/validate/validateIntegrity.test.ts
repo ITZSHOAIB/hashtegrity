@@ -1,18 +1,14 @@
-import { generateDirectoryHash } from "../../src/hash";
+import { generateDirectoryHash } from "../../src/hash/generateDirectoryHash";
 import { generateFileHash } from "../../src/hash/generateFileHash";
 import { generateHash } from "../../src/hash/generateHash";
 import { validateIntegrity } from "../../src/validate/validateIntegrity";
-import { data, key } from "../data/testData";
+import { data, expectedHash, key } from "../data/testData";
 
 jest.mock("../../src/hash/generateFileHash");
 jest.mock("../../src/hash/generateHash");
 jest.mock("../../src/hash/generateDirectoryHash");
 
 describe("validateIntegrity", () => {
-  const filePath = "test-file.txt";
-  const directoryPath = "test-dir";
-  const expectedHash = "expected-file-hash";
-
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -46,6 +42,8 @@ describe("validateIntegrity", () => {
   });
 
   describe("file integrity validation", () => {
+    const filePath = "path/to/file";
+
     it("should return true if the file hash matches the expected hash", async () => {
       (generateFileHash as jest.Mock).mockResolvedValue(expectedHash);
 
@@ -78,6 +76,8 @@ describe("validateIntegrity", () => {
   });
 
   describe("directory integrity validation", () => {
+    const directoryPath = "path/to/directory";
+
     it("should return true if the directory hash matches the expected hash", async () => {
       (generateDirectoryHash as jest.Mock).mockResolvedValue(expectedHash);
 

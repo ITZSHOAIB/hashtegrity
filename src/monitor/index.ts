@@ -1,4 +1,4 @@
 export {
-  monitorFileIntegrity,
-  type MonitorFileIntegrityOptions,
-} from "./monitorFileIntegrity";
+  monitorIntegrity,
+  type MonitorIntegrityOptions,
+} from "./monitorIntegrity";

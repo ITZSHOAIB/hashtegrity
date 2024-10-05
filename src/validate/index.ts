@@ -1,5 +1,5 @@
 export {
   validateIntegrity,
-  type IntegrityValidationType,
+  type ValidationType,
   type IntegrityValidationOptions,
 } from "./validateIntegrity";
