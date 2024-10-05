@@ -4,7 +4,6 @@
 
 ## 🚀 Features
 
-- **Fast and Efficient**: Built with [pnpm](https://pnpm.io/), a fast and efficient package manager.
 - **Versatile Hashing**: Supports multiple hashing algorithms like `sha256`, `md5`, and more.
 - **HMAC Generation**: Easily generate HMACs for added security.
 - **Data Integrity Validation**: Validate the integrity of your data with simple functions.
@@ -102,37 +101,15 @@ await monitorFileIntegrity(options);
 console.log('Monitoring started');
 ```
 
-## 🧑‍💻 Development Guide
-
-### 🤖 Install Dependencies
-
-Install [pnpm](https://pnpm.io/) and then dependencies using pnpm:
-
-```bash
-pnpm install
-```
-
-### 🧪 Running Tests
-
-Run the tests using Jest:
-
-```bash
-pnpm test
-```
-
 ## 🤝 Contribution
 
-We welcome contributions! Please see the [CONTRIBUTING.md](https://github.com/ITZSHOAIB/hashtegrity/blob/main/CONTRIBUTING.md) file for detailed guidelines on how to contribute.
+We welcome contributions! Please see the [CONTRIBUTING.md](.github/CONTRIBUTING.md) file for detailed guidelines on how to contribute.
 
 
 ## 📜 License
 
-This project is licensed under the MIT License. See the [LICENSE file](https://github.com/ITZSHOAIB/hashtegrity/blob/main/LICENSE) for details.
+This project is licensed under the MIT License. See the [LICENSE file](/LICENSE) for details.
 
-## 🌐 Links
-
-- [pnpm](https://pnpm.io) - The fast and efficient package manager.
-- [GitHub Repository](https://github.com/ITZSHOAIB/hashtegrity) - Contribute to the project.
 
 ---
 
