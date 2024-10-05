@@ -1,5 +1,11 @@
 # hashtegrity
 
+## 1.2.0
+
+### Minor Changes
+
+- [#18](https://github.com/ITZSHOAIB/hashtegrity/pull/18) [`2d68c9b`](https://github.com/ITZSHOAIB/hashtegrity/commit/2d68c9b1cd9a6c9a356e7660bd27394e6422f6a3) Thanks [@ITZSHOAIB](https://github.com/ITZSHOAIB)! - feat: generate hash, validate and monitor directory integrity
+
 ## 1.1.0
 
 ### Minor Changes
