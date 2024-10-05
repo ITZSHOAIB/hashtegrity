@@ -1,5 +1,5 @@
-import * as path from "node:path";
 import * as fs from "node:fs";
+import * as path from "node:path";
 import { generateDirectoryHash } from "../../src/hash/generateDirectoryHash";
 import { generateFileHash } from "../../src/hash/generateFileHash";
 import { generateHash } from "../../src/hash/generateHash";

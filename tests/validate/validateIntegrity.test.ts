@@ -1,5 +1,5 @@
-import * as path from "node:path";
 import * as fs from "node:fs";
+import * as path from "node:path";
 import { generateFileHash } from "../../src/hash/generateFileHash";
 import { generateHash } from "../../src/hash/generateHash";
 import { validateIntegrity } from "../../src/validate/validateIntegrity";

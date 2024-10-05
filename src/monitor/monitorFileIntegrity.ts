@@ -1,5 +1,5 @@
 import { watch } from "node:fs";
-import { generateFileHash, type FileHashOptions } from "../hash";
+import { type FileHashOptions, generateFileHash } from "../hash";
 
 export type MonitorFileIntegrityOptions = FileHashOptions & {
   expectedHash?: string;
