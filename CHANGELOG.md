@@ -1,5 +1,11 @@
 # hashtegrity
 
+## 1.2.1
+
+### Patch Changes
+
+- [#25](https://github.com/ITZSHOAIB/hashtegrity/pull/25) [`36b34ad`](https://github.com/ITZSHOAIB/hashtegrity/commit/36b34ad3e8b73c429597d5f9c3c83d5f6a913ef1) Thanks [@ITZSHOAIB](https://github.com/ITZSHOAIB)! - fix: reducing package size by replacing glob with fast-glob
+
 ## 1.2.0
 
 ### Minor Changes
