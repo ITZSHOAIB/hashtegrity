@@ -52,10 +52,7 @@
       "optional": true
     }
   },
-  "files": [
-    "dist",
-    "src"
-  ],
+  "files": ["dist", "src"],
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
