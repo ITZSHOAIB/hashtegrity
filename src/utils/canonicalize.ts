@@ -15,6 +15,10 @@ export const canonicalize = (data: unknown): string => {
     return data.toISOString();
   }
 
+  if (Buffer.isBuffer(data)) {
+    return data.toString("hex");
+  }
+
   if (Array.isArray(data)) {
     return data.map(canonicalize).join(",");
   }
