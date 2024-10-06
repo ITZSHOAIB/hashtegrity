@@ -1,6 +1,6 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
-import * as glob from "glob";
+import { globSync } from "fast-glob";
 import { generateFileHash } from "./generateFileHash";
 import { generateHash } from "./generateHash";
 
@@ -27,10 +27,12 @@ export const generateDirectoryHash = async ({
     throw new Error(`Directory not found: '${directoryPath}'`);
   }
 
-  const files = glob.sync(include.join(","), {
+  const patterns = [...include, ...exclude.map((pattern) => `!${pattern}`)];
+
+  const files = globSync(patterns, {
     cwd: directoryPath,
-    ignore: exclude,
-    nodir: true,
+    dot: true,
+    onlyFiles: true,
   });
 
   files.sort();
