@@ -7,10 +7,18 @@ import {
   generateHash,
 } from "../hash";
 
+/**
+ * Type of the entity to validate, either `data`, `file`, or `directory`.
+ */
 export type ValidationType = "data" | "file" | "directory";
 
+/**
+ * Base options for validating integrity.
+ */
 type BaseIntegrityValidationOptions = {
+  /** The type of entity to validate (data, file, or directory). */
   type: ValidationType;
+  /** The expected hash value for integrity verification. */
   expectedHash: string;
 };
 
@@ -29,11 +37,56 @@ type DirectoryIntegrityValidationOptions = BaseIntegrityValidationOptions &
     type: "directory";
   };
 
+/**
+ * Options for validating integrity.
+ * - If type: `data` then {@link DataHashOptions} options are required.
+ * - If type: `file` then {@link FileHashOptions} options are required.
+ * - If type: `directory` then {@link DirectoryHashOptions} options are required.
+ */
 export type IntegrityValidationOptions =
   | DataIntegrityValidationOptions
   | FileIntegrityValidationOptions
   | DirectoryIntegrityValidationOptions;
 
+/**
+ * Validates the integrity of a data, file, or directory by generating a hash and comparing it to the expected hash.
+ *
+ * @param options {@link IntegrityValidationOptions} - The options for validating integrity.
+ * @returns A promise that resolves to a boolean indicating whether the integrity check passed.
+ *
+ * @example
+ * import { validateIntegrity } from "hashtegrity";
+ *
+ * // Validate data integrity
+ * const options = {
+ *   type: "data",
+ *   data: "Hello, world!",
+ *   expectedHash: "4d4f638fd1c15eb71e1c7b46556c6d76cf6cc0cf1961d9e39a5fdc988a22cfe2",
+ *   algorithm: "sha256",
+ *   key: "your-secret-key",
+ *   metadata: { custom: "data" },
+ * };
+ *
+ * const isValid = await validateIntegrity(options);
+ *
+ * // Validate file integrity
+ * const fileOptions = {
+ *   type: "file",
+ *   filePath: "path/to/your/file.txt",
+ *   ...options,
+ * };
+ *
+ * const isValidFile = await validateIntegrity(fileOptions);
+ *
+ * // Validate directory integrity
+ * const directoryOptions = {
+ *   type: "directory",
+ *   directoryPath: "path/to/your/directory",
+ *   ...options,
+ * };
+ *
+ * const isValidDirectory = await validateIntegrity(directoryOptions);
+ */
 export const validateIntegrity = async ({
   type,
   expectedHash,
