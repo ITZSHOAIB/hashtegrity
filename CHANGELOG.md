@@ -1,5 +1,11 @@
 # hashtegrity
 
+## 1.2.4
+
+### Patch Changes
+
+- [#31](https://github.com/ITZSHOAIB/hashtegrity/pull/31) [`7ec270d`](https://github.com/ITZSHOAIB/hashtegrity/commit/7ec270deff00b63ce769cbd0cdf5eecc374dd69d) Thanks [@ITZSHOAIB](https://github.com/ITZSHOAIB)! - improved comments for better IDE experience
+
 ## 1.2.3
 
 ### Patch Changes
