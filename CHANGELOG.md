@@ -1,5 +1,11 @@
 # hashtegrity
 
+## 1.2.2
+
+### Patch Changes
+
+- [#27](https://github.com/ITZSHOAIB/hashtegrity/pull/27) [`e01706b`](https://github.com/ITZSHOAIB/hashtegrity/commit/e01706ba75852d13f7776a57d2d69b77fcba283f) Thanks [@ITZSHOAIB](https://github.com/ITZSHOAIB)! - feat: reducing package size by optimizing rollup
+
 ## 1.2.1
 
 ### Patch Changes
