@@ -1,5 +1,11 @@
 # hashtegrity
 
+## 1.2.3
+
+### Patch Changes
+
+- [#29](https://github.com/ITZSHOAIB/hashtegrity/pull/29) [`cf14185`](https://github.com/ITZSHOAIB/hashtegrity/commit/cf141856efe8fa62d5b722b0c5a4e0c443c98b6a) Thanks [@ITZSHOAIB](https://github.com/ITZSHOAIB)! - fix: monitor module export fix
+
 ## 1.2.2
 
 ### Patch Changes
