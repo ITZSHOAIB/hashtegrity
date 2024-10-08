@@ -3,6 +3,8 @@ import resolve from "@rollup/plugin-node-resolve";
 import terser from "@rollup/plugin-terser";
 import typescript from "@rollup/plugin-typescript";
 
+const external = [...Object.keys(require("./package.json").dependencies || {})];
+
 export default {
   input: "src/index.ts",
   output: [
@@ -23,4 +25,5 @@ export default {
     }),
     terser(),
   ],
+  external,
 };
