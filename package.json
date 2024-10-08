@@ -7,7 +7,7 @@
   "types": "dist/types/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "pnpm clean && rollup -c",
+    "build": "pnpm clean && rollup -c --bundleConfigAsCjs",
     "clean": "rimraf dist",
     "test": "jest --maxWorkers=50%",
     "test:watch": "jest --watch",
