@@ -27,7 +27,7 @@ jobs:
         run: pnpm lint
 
       - name: Auto Commit
-        if: github.ref != 'refs/heads/master'
+        if: github.ref != 'refs/heads/main'
         uses: stefanzweifel/git-auto-commit-action@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
