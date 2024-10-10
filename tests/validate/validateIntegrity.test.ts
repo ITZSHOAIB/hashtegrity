@@ -2,7 +2,7 @@ import { generateDirectoryHash } from "../../src/hash/generateDirectoryHash";
 import { generateFileHash } from "../../src/hash/generateFileHash";
 import { generateHash } from "../../src/hash/generateHash";
 import { validateIntegrity } from "../../src/validate/validateIntegrity";
-import { data, expectedHash, key } from "../data/testData";
+import { data, expectedHash, key } from "../fixtures/testData";
 
 jest.mock("../../src/hash/generateFileHash");
 jest.mock("../../src/hash/generateHash");

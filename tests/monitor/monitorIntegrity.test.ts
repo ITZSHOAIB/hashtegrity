@@ -2,7 +2,7 @@ import * as fs from "node:fs";
 import { generateDirectoryHash } from "../../src/hash/generateDirectoryHash";
 import { generateFileHash } from "../../src/hash/generateFileHash";
 import { monitorIntegrity } from "../../src/monitor/monitorIntegrity";
-import { expectedHash, key } from "../data/testData";
+import { expectedHash, key } from "../fixtures/testData";
 
 jest.mock("node:fs");
 jest.mock("../../src/hash/generateFileHash");
