@@ -1,5 +1,5 @@
 import { generateHash } from "../../src/hash/generateHash";
-import { anotherData, data, key } from "../data/testData";
+import { anotherData, data, key } from "../fixtures/testData";
 
 describe("generateHash", () => {
   it("should generate a sha256 hash by default", () => {

@@ -76,7 +76,8 @@
     "hash generation",
     "hash validation",
     "directory integrity",
-    "offchain data integrity"
+    "offchain data integrity",
+    "merkle tree"
   ],
   "author": "Sohab Sk",
   "license": "MIT",

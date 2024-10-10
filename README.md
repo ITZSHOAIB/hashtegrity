@@ -4,6 +4,7 @@
 
 ## 🚀 Features
 
+- **Verifiable Hash List**: Create and verify **Merkle trees** for large list of data. Generate proof and verify efficiently.
 - **Versatile Hashing**: Supports multiple hashing algorithms like `sha256`, `md5`, and more.
 - **HMAC Generation**: Easily generate HMACs for added security.
 - **Data Integrity Validation**: Validate the integrity of your data with simple functions.
@@ -20,6 +21,41 @@ npm install hashtegrity
 ```
 
 ## 🛠️ Usage
+
+### VerifiableHashList 
+
+The `VerifiableHashList` feature allows you to create and verify Merkle trees for data integrity. This is particularly useful for ensuring the integrity of a list of items very efficiently.
+
+```typescript
+import { VerifiableHashList } from "hashtegrity";
+
+// Create a verifiable hash list
+const hashList = new VerifiableHashList(["item1", "item2"]);
+
+// Get the root hash of the Merkle tree
+// **Which can be stored onchain
+const rootHash = hashList.getRootHash();
+console.log("Root Hash:", rootHash);
+
+// Add an item to the list
+const newRootHash = hashList.addItem("item3");
+console.log("New Root Hash:", newRootHash);
+
+// Verify an item in the list
+const isValid = hashList.verifyItem("item3", newRootHash);
+console.log("Is Valid:", isValid);
+
+// Serialize the hash list into JSON
+// **can be stored offchain
+const json = hashList.serializeState();
+console.log("Serialized Hash List:", json);
+
+// Deserialize the hash list and again convert into VerifiableHashList instance
+const deserializedHashList = VerifiableHashList.fromState(json);
+console.log("Deserialized Root Hash:", 
+  deserializedHashList.getRootHash()
+);
+```
 
 ### Generate a Hash
 

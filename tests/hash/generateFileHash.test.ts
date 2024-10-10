@@ -1,10 +1,10 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { generateFileHash } from "../../src/hash/generateFileHash";
-import { key } from "../data/testData";
+import { key } from "../fixtures/testData";
 
 describe("generateFileHash", () => {
-  const testFilePath = path.join(__dirname, "../data", "testFile.txt");
+  const testFilePath = path.join(__dirname, "../fixtures", "testFile.txt");
   const fileContent = "test content";
 
   beforeAll(() => {

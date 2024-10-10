@@ -8,9 +8,9 @@ jest.mock("../../src/hash/generateFileHash");
 jest.mock("../../src/hash/generateHash");
 
 describe("generateDirectoryHash", () => {
-  const testDirPath = path.join(__dirname, "../data/testDir");
-  const emptyDirPath = path.join(__dirname, "../data/emptyDir");
-  const nonExistentDirPath = path.join(__dirname, "../data/nonExistentDir");
+  const testDirPath = path.join(__dirname, "../fixtures/testDir");
+  const emptyDirPath = path.join(__dirname, "../fixtures/emptyDir");
+  const nonExistentDirPath = path.join(__dirname, "../fixtures/nonExistentDir");
 
   beforeAll(() => {
     // Create test directories and files

@@ -137,5 +137,5 @@ export const validateIntegrity = async ({
     return directoryHash === expectedHash;
   }
 
-  throw new Error("Invalid type or missing data/filePath");
+  throw new Error("Invalid type or missing fixtures/filePath");
 };
