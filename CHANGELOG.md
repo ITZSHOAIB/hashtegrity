@@ -1,5 +1,11 @@
 # hashtegrity
 
+## 1.3.0
+
+### Minor Changes
+
+- [#34](https://github.com/ITZSHOAIB/hashtegrity/pull/34) [`faf7511`](https://github.com/ITZSHOAIB/hashtegrity/commit/faf75112d596de19387c3c13f4e38851eecc43e0) Thanks [@ITZSHOAIB](https://github.com/ITZSHOAIB)! - feat: VerifiableHashList with merkle tree
+
 ## 1.2.4
 
 ### Patch Changes
