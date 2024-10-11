@@ -47,11 +47,11 @@ console.log("Is Valid:", isValid);
 
 // Serialize the hash list into JSON
 // **can be stored offchain
-const json = hashList.serializeState();
+const json = hashList.toJSON();
 console.log("Serialized Hash List:", json);
 
 // Deserialize the hash list and again convert into VerifiableHashList instance
-const deserializedHashList = VerifiableHashList.fromState(json);
+const deserializedHashList = VerifiableHashList.fromJSON(json);
 console.log("Deserialized Root Hash:", 
   deserializedHashList.getRootHash()
 );
