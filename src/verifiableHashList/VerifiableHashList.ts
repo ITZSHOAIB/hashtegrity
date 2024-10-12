@@ -22,10 +22,10 @@ import { MerkleTree } from "./MerkleTree";
  * const isValid = hashList.verifyItem("item3", rootHash);
  *
  * // Serialize the hash list
- * const json = hashList.toString();
+ * const json = hashList.toJSON();
  *
  * // Deserialize the hash list
- * const hashList = VerifiableHashList.from(json);
+ * const hashList = VerifiableHashList.fromJSON(json);
  */
 export class VerifiableHashList extends MerkleTree {
   constructor(data: unknown[], algorithm = "sha256") {
