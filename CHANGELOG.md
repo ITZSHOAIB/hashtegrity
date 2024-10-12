@@ -1,5 +1,11 @@
 # hashtegrity
 
+## 1.3.1
+
+### Patch Changes
+
+- [#36](https://github.com/ITZSHOAIB/hashtegrity/pull/36) [`c18f39c`](https://github.com/ITZSHOAIB/hashtegrity/commit/c18f39ccfc2763287c18e8e91b55b288aefbc860) Thanks [@ITZSHOAIB](https://github.com/ITZSHOAIB)! - feat: updated verifiableHashList docs
+
 ## 1.3.0
 
 ### Minor Changes
