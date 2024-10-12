@@ -15,6 +15,9 @@ import { MerkleTree } from "./MerkleTree";
  * // Create a verifiable hash list
  * const hashList = new VerifiableHashList(["item1", "item2"]);
  *
+ * // Get root hash of the list
+ * const rootHash = hashList.getRootHash();
+ *
  * // Add an item to the list
  * const rootHash = hashList.addItem("item3");
  *
